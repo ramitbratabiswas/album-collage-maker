@@ -2,3 +2,24 @@ h1 {
   color: red;
   font-size: xx-large;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
