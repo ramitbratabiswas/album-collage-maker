@@ -3,11 +3,10 @@ import crypto from 'crypto-browserify';
 export const createAuthLink = () => {
 
   const client_id = import.meta.env.VITE_CLIENT_ID;
-  const redirect_uri = 'localhost:5173/callback';
+  const redirect_uri = 'http://localhost:5173/callback';
 
   const state = generateRandomString(16);
-  const scope = `playlist-read-private
-    playlist-read-collaborative
+  const scope = `
     user-library-read
     user-read-playback-state
     user-read-currently-playing
