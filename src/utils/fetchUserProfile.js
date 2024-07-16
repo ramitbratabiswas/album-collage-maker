@@ -25,8 +25,6 @@ export const useFetchUserProfile = () => {
         const name = jsonified.display_name;
         const imgUrl = jsonified.images[0].url;
 
-        console.log("name: " + name + " imgUrl: " + imgUrl);
-
         setUserProfile({
           imgUrl: imgUrl,
           name: name

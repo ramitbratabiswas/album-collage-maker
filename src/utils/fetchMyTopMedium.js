@@ -21,17 +21,11 @@ export const useFetchMyTopMedium = () => {
         });
 
         const data = await res.json();
-        console.log(data);
-        const tracks = data.items.map((item, index) => {
-          let songName = item.name;
-          let songId = item.id;
+        const tracks = data.items.map((item) => {
+          let songAlbum = item.album.name;
           let songImage = item.album.images[0].url;
-          if (songName.toLowerCase().includes('(feat')) {
-            let featIndex = songName.toLowerCase().indexOf('(feat');
-            songName = songName.substring(0, featIndex - 1);
-          }
-          return { id: index + 1, song: songName, artist: item.artists.map((artist) => artist.name), trackId: songId, image: songImage }
-        })
+          return { album: songAlbum, image: songImage }
+        });
         
         setMyTopMediumData({
           name: "top songs - last 6 months",
