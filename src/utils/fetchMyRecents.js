@@ -24,7 +24,8 @@ export const useFetchMyRecents = () => {
         const tracks = data.items.map((item) => {
           let songAlbum = item.track.album.name;
           let songImage = item.track.album.images[0].url;
-          return { album: songAlbum, image: songImage }
+          let songArtist = item.track.artists.map(artist => artist.name).join(", ");
+          return { album: songAlbum, image: songImage, artist: songArtist };
         });
         
         setRecentsData({

@@ -24,7 +24,8 @@ export const useFetchMyTopLong = () => {
         const tracks = data.items.map((item) => {
           let songAlbum = item.album.name;
           let songImage = item.album.images[0].url;
-          return { album: songAlbum, image: songImage };
+          let songArtist = item.artists.map(artist => artist.name).join(", ");
+          return { album: songAlbum, image: songImage, artist: songArtist };
         });
         
         setMyTopLongData({

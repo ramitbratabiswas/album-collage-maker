@@ -6,16 +6,16 @@ import { useFetchMyTopShort } from "./fetchMyTopShort";
 export const useFetchUniqueImages = () => {
 
   const recentsImages = useFetchMyRecents().tracks.map(track => {
-    return { album: track.album, link: track.image }
+    return { album: track.album, link: track.image, artist: track.artist }
   });
   const topLongImages = useFetchMyTopLong().tracks.map(track => {
-    return { album: track.album, link: track.image }
+    return { album: track.album, link: track.image, artist: track.artist }
   });
   const topMediumImages = useFetchMyTopMedium().tracks.map(track => {
-    return { album: track.album, link: track.image }
+    return { album: track.album, link: track.image, artist: track.artist }
   });
   const topShortImages = useFetchMyTopShort().tracks.map(track => {
-    return { album: track.album, link: track.image }
+    return { album: track.album, link: track.image, artist: track.artist }
   });
   const merged = [...recentsImages, ...topLongImages, ...topMediumImages, ...topShortImages];
   const unique = shuffle(removeDuplicates(merged));
