@@ -1,1 +1,1 @@
-# Spotify-banner-maker
+banner-maker
