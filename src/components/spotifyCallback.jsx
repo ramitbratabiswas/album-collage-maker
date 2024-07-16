@@ -18,7 +18,7 @@ export default function SpotifyCallback() {
       localStorage.setItem("access_token", accessToken);
       localStorage.setItem("refresh_token", refreshToken);
       
-      navigate("/mymusic");
+      navigate("/creator");
     }
   }, [accessToken, refreshToken]);
 
