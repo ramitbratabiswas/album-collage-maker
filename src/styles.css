@@ -7,14 +7,14 @@ h1 {
   font-size: xx-large;
 }
 
-.container {
+.banner-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-.image-container {
+.banner-image-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 0px;
