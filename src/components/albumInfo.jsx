@@ -1,3 +1,3 @@
-export const AlbumInfo = () => {
+export default function AlbumInfo() {
   return <div></div>
 }
