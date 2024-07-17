@@ -6,9 +6,13 @@ export default function Banner() {
 
   return (
     <div className='banner-container'>
-      <div className='banner-image-container'>
+      <div className='banner'>
         {albums.map((album, index) => {
-          return <img className='image' id={`image-${index+1}`} src={album.link} key={index+1}/>;
+          return (
+            <div className='banner-image-container' key={index + 1}>
+              <img className='image' id={`image-${index + 1}`} src={album.link} />
+            </div>
+          );
         })}
       </div>
     </div>
