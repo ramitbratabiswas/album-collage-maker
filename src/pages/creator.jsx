@@ -5,9 +5,10 @@ import GridSettings from "../components/gridSettings";
 export default function Creator() {
 
   return (
-    <>
+    <div className='creator-container'>
       <GridSettings />
       <AlbumInfo />
       <Banner />
-    </>);
+    </div>
+  );
 }
