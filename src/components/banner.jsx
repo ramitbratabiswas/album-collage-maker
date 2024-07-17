@@ -1,27 +1,4 @@
-// import { useRef } from "react";
-// import { useFetchUniqueImages } from "../utils/fetchUniqueImages";
-
-// export default function Banner() {
-
-//   const bannerRef = useRef<HTMLDivElement>(null);
-//   const albums = useFetchUniqueImages();
-
-//   return (
-//     <div className='banner-container'>
-//       <div ref={bannerRef} className='banner'>
-//         {albums.map((album, index) => {
-//           return (
-//             <div className='banner-image-container' key={index + 1}>
-//               <img className='image' id={`image-${index + 1}`} src={album.link} />
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// }
-
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 
@@ -48,7 +25,7 @@ export default function Banner() {
       } else {
         img.onload = checkImagesLoaded;
         img.onerror = checkImagesLoaded;
-      }
+      }8
     });
 
     // Check if there are no images
@@ -59,10 +36,32 @@ export default function Banner() {
 
   const handleDownload = async () => {
     if (imagesLoaded && bannerRef.current) {
+      // Save original CSS properties
+      const originalGridTemplateColumns = bannerRef.current.style.gridTemplateColumns;
+      const originalGap = bannerRef.current.style.gap;
+
+      const originalWidth = bannerRef.current.offsetWidth;
+      const originalHeight = bannerRef.current.offsetHeight;
+  
+      // Update CSS to make images larger
+      bannerRef.current.style.gridTemplateColumns = 'repeat(6, 400px)';
+      bannerRef.current.style.gap = '0px';
+  
+      // Wait a short period to ensure the styles are applied
+      await new Promise(resolve => setTimeout(resolve, 100));
+  
+      // Capture the canvas
       const canvas = await html2canvas(bannerRef.current, {
         useCORS: true,
+        width: 2400,
       });
-      const dataURL = canvas.toDataURL('image/png');
+  
+      // Revert CSS changes
+      bannerRef.current.style.gridTemplateColumns = originalGridTemplateColumns;
+      bannerRef.current.style.gap = originalGap;
+  
+      // Convert canvas to image and trigger download
+      const dataURL = canvas.toDataURL('image/jpeg');
       const link = document.createElement('a');
       link.href = dataURL;
       link.download = 'banner.png';
@@ -73,6 +72,8 @@ export default function Banner() {
       alert('Images are still loading, please try again in a moment.');
     }
   };
+  
+  
 
   return (
     <div className='creator-container'>
