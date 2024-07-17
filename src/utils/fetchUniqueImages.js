@@ -2,6 +2,7 @@ import { useFetchMyRecents } from "./fetchMyRecents";
 import { useFetchMyTopLong } from "./fetchMyTopLong";
 import { useFetchMyTopMedium } from "./fetchMyTopMedium";
 import { useFetchMyTopShort } from "./fetchMyTopShort";
+import { shuffle } from './randomizeAlbums';
 
 export const useFetchUniqueImages = () => {
 
@@ -36,9 +37,3 @@ const removeDuplicates = (arr) => {
   });
 };
 
-const shuffle = (unshuffled) => {
-  return unshuffled
-  .map(value => ({ value, sort: Math.random() }))
-  .sort((a, b) => a.sort - b.sort)
-  .map(({ value }) => value);
-}
