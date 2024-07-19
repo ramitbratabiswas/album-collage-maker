@@ -7,7 +7,7 @@
   border: 0;
   box-sizing: border-box;
   font-family: 'Poppins', 'sans-serif';
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 html {
@@ -22,11 +22,11 @@ html {
   background-color: rgb(60, 60, 60);
   position: relative;
   padding: 2%;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 }
 
 .banner-creator-container {
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -87,8 +87,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: clamp(6px, 1vw, 12px);
-  border: 2px green solid;
-  padding: 5px;
+  /* border: 2px green solid; */
+  padding: 10px;
   border-radius: 8px;
   background-color: #49b3ff;
   box-shadow: 0 0 8px black;
@@ -101,7 +101,7 @@ button:hover {
   display: flex;
   gap: clamp(12px, 1.2vw, 24px);
   margin-right: clamp(8px, 1vw, 16px);
-  border: 2px blue solid;
+  /* border: 2px blue solid; */
   width: 100%;
 }
 
@@ -120,8 +120,8 @@ button:hover {
 
 .rows, .columns {
   margin: 0 2%;
-  font-size: clamp(10px, 1.2vw, 24px);
-  border: 2px cyan solid;
+  font-size: clamp(10px, 1.2vw, 20px);
+  padding: 4px;
 }
 
 .rows-columns-button-and-text {
