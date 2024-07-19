@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 
-export default function Banner({ data, setData }) {
+export default function Banner({ data, setData, covers, setCovers }) {
 
   const { rows, columns, resolution } = data;
   const imagesToShow = rows * columns;
