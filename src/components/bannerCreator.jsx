@@ -1,23 +1,14 @@
-// BannerCreator.js
-import { useState, useRef, useContext, useEffect } from 'react';
+import { useState, useRef, useContext } from 'react';
 import Banner from './banner.jsx';
 import { downloadBanner } from '../utils/downloadBanner';
-import { AppContext } from '../utils/appContext.jsx';
-import { useFetchUniqueImages } from '../utils/fetchUniqueImages.js';
+import { AppContext } from '../utils/appContext';
 
 export default function BannerCreator() {
-  const { data, setCovers } = useContext(AppContext);
-  const uniqueImages = useFetchUniqueImages();
-
+  const { data } = useContext(AppContext);
   const { columns, resolution } = data;
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [selectedAlbum, setSelectedAlbum] = useState(null);
   const ref = useRef(null);
-
-  useEffect(() => {
-    if (uniqueImages.length > 0) {
-      setCovers(uniqueImages);
-    }
-  }, [uniqueImages, setCovers]);
 
   const handleDownload = async () => {
     if (imagesLoaded && ref.current) {
@@ -27,10 +18,14 @@ export default function BannerCreator() {
     }
   };
 
+  const handleAlbumClick = (album) => {
+    setSelectedAlbum(album);
+  };
+
   return (
     <div className='banner-creator-container'>
-      <div className='banner-container'>
-        <Banner data={data} setImagesLoaded={setImagesLoaded} ref={ref} />
+      <div className={`banner-container ${selectedAlbum ? 'shift-left' : ''}`}>
+        <Banner setImagesLoaded={setImagesLoaded} ref={ref} onAlbumClick={handleAlbumClick} />
       </div>
       <button onClick={handleDownload} disabled={!imagesLoaded}>Download as Image</button>
     </div>

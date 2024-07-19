@@ -4,7 +4,7 @@ import { shuffle } from "../utils/randomizeAlbums";
 
 export default function GridSettings() {
 
-  const { data, setData, covers, setCovers } = useContext(AppContext);
+  const { setData, covers, setCovers } = useContext(AppContext);
 
   const total = covers.length;
 

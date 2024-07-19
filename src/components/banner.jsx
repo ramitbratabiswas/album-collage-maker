@@ -3,11 +3,17 @@ import { useEffect, forwardRef, useContext } from 'react';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 import { AppContext } from '../utils/appContext';
 
-const Banner = forwardRef(({ setImagesLoaded }, ref) => {
+const Banner = forwardRef(({ setImagesLoaded, onAlbumClick }, ref) => {
   const { data, covers, setCovers } = useContext(AppContext);
-
   const { rows, columns } = data;
   const numImagesToShow = rows * columns;
+  const albums = useFetchUniqueImages();
+
+  useEffect(() => {
+    if (albums.length > 0) {
+      setCovers(albums);
+    }
+  }, [albums, setCovers]);
 
   useEffect(() => {
     const images = ref.current.querySelectorAll('img');
@@ -33,7 +39,7 @@ const Banner = forwardRef(({ setImagesLoaded }, ref) => {
     if (totalImages === 0) {
       setImagesLoaded(true);
     }
-  }, [ ref, covers, covers.length, setImagesLoaded]);
+  }, [covers, ref, setImagesLoaded]);
 
   useEffect(() => {
     ref.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
@@ -42,7 +48,7 @@ const Banner = forwardRef(({ setImagesLoaded }, ref) => {
   return (
     <div ref={ref} className='banner'>
       {covers.slice(0, numImagesToShow).map((album, index) => (
-        <div className='banner-image-container' key={index}>
+        <div className='banner-image-container' key={index} onClick={() => onAlbumClick(album)}>
           <img className='image' src={album.link} alt={`album-${index}`} />
         </div>
       ))}
