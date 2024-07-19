@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/appContext";
+import { shuffle } from "../utils/randomizeAlbums";
 
 export default function GridSettings() {
 
   const { data, setData, covers, setCovers } = useContext(AppContext);
 
-  const total = 100;
+  const total = covers.length;
 
   const [rows, setRows] = useState(4);
   const [columns, setColumns] = useState(7);
@@ -36,7 +37,7 @@ export default function GridSettings() {
   }
 
   const shuffleCovers = () => {
-
+    setCovers(shuffle(covers));
   }
 
   return (
@@ -73,7 +74,7 @@ export default function GridSettings() {
           className="slider"
           id="myRange"
         />
-        {`${resolution} px`}
+        {`${resolution} pixels`}
       </div>
       <div className="buttons">
         <button className="generate-button" onClick={generateData}>

@@ -1,30 +1,56 @@
-import { useFetchMyRecents } from "./fetchMyRecents";
-import { useFetchMyTopLong } from "./fetchMyTopLong";
-import { useFetchMyTopMedium } from "./fetchMyTopMedium";
-import { useFetchMyTopShort } from "./fetchMyTopShort";
+import { useMemo } from 'react';
+import { useFetchMyRecents } from './fetchMyRecents';
+import { useFetchMyTopLong } from './fetchMyTopLong';
+import { useFetchMyTopMedium } from './fetchMyTopMedium';
+import { useFetchMyTopShort } from './fetchMyTopShort';
+
+import { shuffle } from './randomizeAlbums';
 
 export const useFetchUniqueImages = () => {
+  const recents = useFetchMyRecents();
+  const topLong = useFetchMyTopLong();
+  const topMedium = useFetchMyTopMedium();
+  const topShort = useFetchMyTopShort();
 
-  const recentsImages = useFetchMyRecents().tracks.map(track => {
-    return { album: track.album, link: track.image, artist: track.artist }
-  });
-  const topLongImages = useFetchMyTopLong().tracks.map(track => {
-    return { album: track.album, link: track.image, artist: track.artist }
-  });
-  const topMediumImages = useFetchMyTopMedium().tracks.map(track => {
-    return { album: track.album, link: track.image, artist: track.artist }
-  });
-  const topShortImages = useFetchMyTopShort().tracks.map(track => {
-    return { album: track.album, link: track.image, artist: track.artist }
-  });
-  const merged = [...recentsImages, ...topLongImages, ...topMediumImages, ...topShortImages];
-  const unique = removeDuplicates(merged);
-  
-  return unique;
+  const uniqueImages = useMemo(() => {
+    const recentsImages = recents.tracks.map(track => ({
+      album: track.album,
+      link: track.image,
+      artist: track.artist
+    }));
 
-}
+    const topLongImages = topLong.tracks.map(track => ({
+      album: track.album,
+      link: track.image,
+      artist: track.artist
+    }));
 
-const removeDuplicates = (arr) => {
+    const topMediumImages = topMedium.tracks.map(track => ({
+      album: track.album,
+      link: track.image,
+      artist: track.artist
+    }));
+
+    const topShortImages = topShort.tracks.map(track => ({
+      album: track.album,
+      link: track.image,
+      artist: track.artist
+    }));
+
+    const merged = [
+      ...recentsImages,
+      ...topLongImages,
+      ...topMediumImages,
+      ...topShortImages
+    ];
+
+    return removeDuplicates(merged);
+  }, [recents, topLong, topMedium, topShort]);
+
+  return uniqueImages;
+};
+
+const removeDuplicates = arr => {
   const seenLinks = new Set();
   return arr.filter(item => {
     if (seenLinks.has(item.link)) {
@@ -35,4 +61,3 @@ const removeDuplicates = (arr) => {
     }
   });
 };
-

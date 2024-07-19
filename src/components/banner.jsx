@@ -1,15 +1,17 @@
 // Banner.js
-import React, { useRef, useState, useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef, useContext } from 'react';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
+import { AppContext } from '../utils/appContext';
 
-const Banner = forwardRef(({ data, setImagesLoaded }, ref) => {
+const Banner = forwardRef(({ setImagesLoaded }, ref) => {
+  const { data, covers, setCovers } = useContext(AppContext);
+
   const { rows, columns } = data;
-  const imagesToShow = rows * columns;
-  const albums = useFetchUniqueImages();
+  const numImagesToShow = rows * columns;
 
   useEffect(() => {
     const images = ref.current.querySelectorAll('img');
-    const totalImages = images.length;
+    const totalImages = covers.length;
     let loadedImages = 0;
 
     const checkImagesLoaded = () => {
@@ -31,15 +33,15 @@ const Banner = forwardRef(({ data, setImagesLoaded }, ref) => {
     if (totalImages === 0) {
       setImagesLoaded(true);
     }
-  }, [albums, ref, setImagesLoaded]);
+  }, [ ref, covers, covers.length, setImagesLoaded]);
 
   useEffect(() => {
     ref.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-  }, [columns]);
+  }, [columns, ref]);
 
   return (
     <div ref={ref} className='banner'>
-      {albums.slice(0, imagesToShow).map((album, index) => (
+      {covers.slice(0, numImagesToShow).map((album, index) => (
         <div className='banner-image-container' key={index}>
           <img className='image' src={album.link} alt={`album-${index}`} />
         </div>
