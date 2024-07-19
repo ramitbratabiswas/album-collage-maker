@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function GridSettings( { data, setData } ) {
+export default function GridSettings({ data, setData }) {
 
   const total = 100;
 
@@ -29,25 +29,33 @@ export default function GridSettings( { data, setData } ) {
   }
 
   const generateData = () => {
-    setData(() => ({ rows: rows, columns: columns, resolution: resolution }));
+    setData(() => ({ rows, columns, resolution }));
   }
 
   return (
     <div className="grid-settings-container">
-      rows:
-      <div className="rows-button">
-        <span className="rows-minus" onClick={decrementRows}>-</span>
-         <span className="rows">{`${rows}`}</span>
-        <span className="rows-plus" onClick={incrementRows}>+</span>
-      </div>
-      columns: 
-      <div className="columns-button">
-        <span className="columns-minus" onClick={decrementColumns}>-</span>
-        <span className="columns">{`${columns}`}</span>
-        <span className="columns-plus" onClick={incrementColumns}>+</span>
-      </div>
-      <div>{`album covers to display: ${rows * columns}`}</div>
       <div>
+      <div className="rows-and-columns">
+        <div>
+          rows:
+          <div className="rows-button">
+            <span className="rows-minus" onClick={decrementRows}>-</span>
+            <span className="rows">{`${rows}`}</span>
+            <span className="rows-plus" onClick={incrementRows}>+</span>
+          </div>
+        </div>
+        <div>
+          columns:
+          <div className="columns-button">
+            <span className="columns-minus" onClick={decrementColumns}>-</span>
+            <span className="columns">{`${columns}`}</span>
+            <span className="columns-plus" onClick={incrementColumns}>+</span>
+          </div>
+        </div>
+      </div>
+      <div className="number-of-covers">{`album covers to display: ${rows * columns}`}</div>
+      </div>
+      <div className="slider-and-resolution">
         {`side length of each image:`}
         <input 
           onChange={handleResolutionChange} 

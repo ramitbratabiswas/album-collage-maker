@@ -6,7 +6,7 @@ import GridSettings from "../components/gridSettings";
 
 export default function Creator() {
 
-  const [data, setData] = useState({ rows: 7, columns: 4, resolution: 400 });
+  const [data, setData] = useState({ rows: 4, columns: 7, resolution: 400 });
   console.log(data);
 
   return (
