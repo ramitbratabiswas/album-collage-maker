@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function GridSettings({ data, setData }) {
+export default function GridSettings({ data, setData, covers, setCovers }) {
 
   const total = 100;
 
@@ -70,7 +70,7 @@ export default function GridSettings({ data, setData }) {
       </div>
       <div className="buttons">
         <button className="generate-button" onClick={generateData}>
-          generate!
+          update!
         </button>
         <button className="shuffle-button" onClick={generateData}>
           shuffle!
