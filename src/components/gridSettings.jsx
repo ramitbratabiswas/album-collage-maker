@@ -35,42 +35,47 @@ export default function GridSettings({ data, setData }) {
   return (
     <div className="grid-settings-container">
       <div>
-      <div className="rows-and-columns">
-        <div>
-          rows:
-          <div className="rows-button">
-            <span className="rows-minus" onClick={decrementRows}>-</span>
-            <span className="rows">{`${rows}`}</span>
-            <span className="rows-plus" onClick={incrementRows}>+</span>
+        <div className="rows-and-columns">
+          <div>
+            rows:
+            <div className="rows-button">
+              <span className="rows-minus" onClick={decrementRows}>-</span>
+              <span className="rows">{`${rows}`}</span>
+              <span className="rows-plus" onClick={incrementRows}>+</span>
+            </div>
+          </div>
+          <div>
+            columns:
+            <div className="columns-button">
+              <span className="columns-minus" onClick={decrementColumns}>-</span>
+              <span className="columns">{`${columns}`}</span>
+              <span className="columns-plus" onClick={incrementColumns}>+</span>
+            </div>
           </div>
         </div>
-        <div>
-          columns:
-          <div className="columns-button">
-            <span className="columns-minus" onClick={decrementColumns}>-</span>
-            <span className="columns">{`${columns}`}</span>
-            <span className="columns-plus" onClick={incrementColumns}>+</span>
-          </div>
-        </div>
-      </div>
-      <div className="number-of-covers">{`album covers to display: ${rows * columns}`}</div>
+        <div className="number-of-covers">{`album covers to display: ${rows * columns}`}</div>
       </div>
       <div className="slider-and-resolution">
         {`side length of each image:`}
-        <input 
-          onChange={handleResolutionChange} 
-          type="range" 
-          min="200" 
-          max="640" 
-          value={resolution} 
-          className="slider" 
-          id="myRange" 
+        <input
+          onChange={handleResolutionChange}
+          type="range"
+          min="100"
+          max="640"
+          value={resolution}
+          className="slider"
+          id="myRange"
         />
         {`${resolution} px`}
       </div>
-      <button className="generate-button" onClick={generateData}>
-        generate!
-      </button>
+      <div className="buttons">
+        <button className="generate-button" onClick={generateData}>
+          generate!
+        </button>
+        <button className="shuffle-button" onClick={generateData}>
+          shuffle!
+        </button>
+      </div>
     </div>
   );
 }

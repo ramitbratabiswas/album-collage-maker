@@ -43,9 +43,6 @@ export default function Banner({ data, setData }) {
       // Save original CSS properties
       const originalGridTemplateColumns = bannerRef.current.style.gridTemplateColumns;
       const originalGap = bannerRef.current.style.gap;
-
-      const originalWidth = bannerRef.current.offsetWidth;
-      const originalHeight = bannerRef.current.offsetHeight;
   
       // Update CSS to make images larger
       bannerRef.current.style.gridTemplateColumns = `repeat(${columns}, ${resolution}px)`;
@@ -79,7 +76,7 @@ export default function Banner({ data, setData }) {
   
   useEffect(() => {
     bannerRef.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-  }, [data]);
+  }, [columns]);
 
   return (
     <div className='creator-container'>
