@@ -2,7 +2,11 @@ import { useRef, useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 
-export default function Banner() {
+export default function Banner({ data, setData }) {
+
+  const { rows, columns, resolution } = data;
+  const imagesToShow = rows * columns;
+
   const bannerRef = useRef(null);
   const albums = useFetchUniqueImages();
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -44,7 +48,7 @@ export default function Banner() {
       const originalHeight = bannerRef.current.offsetHeight;
   
       // Update CSS to make images larger
-      bannerRef.current.style.gridTemplateColumns = 'repeat(6, 400px)';
+      bannerRef.current.style.gridTemplateColumns = `repeat(${columns}, ${resolution}px)`;
       bannerRef.current.style.gap = '0px';
   
       // Wait a short period to ensure the styles are applied
@@ -53,7 +57,7 @@ export default function Banner() {
       // Capture the canvas
       const canvas = await html2canvas(bannerRef.current, {
         useCORS: true,
-        width: 2400,
+        width: resolution * columns,
       });
   
       // Revert CSS changes
@@ -73,7 +77,9 @@ export default function Banner() {
     }
   };
   
-  
+  useEffect(() => {
+    bannerRef.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+  }, [data]);
 
   return (
     <div className='creator-container'>
@@ -83,7 +89,7 @@ export default function Banner() {
             <div className='banner-image-container' key={index}>
               <img className='image' id={`image-${index}`} src={album.link} alt={`album-${index}`} />
             </div>
-          ))}
+          )).slice(0, imagesToShow)}
         </div>
       </div>
       <button onClick={handleDownload} disabled={!imagesLoaded}>Download as Image</button>

@@ -19,7 +19,7 @@ export const useFetchUniqueImages = () => {
     return { album: track.album, link: track.image, artist: track.artist }
   });
   const merged = [...recentsImages, ...topLongImages, ...topMediumImages, ...topShortImages];
-  const unique = shuffle(removeDuplicates(merged));
+  const unique = removeDuplicates(merged);
   
   return unique;
 
