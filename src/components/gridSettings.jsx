@@ -4,8 +4,8 @@ export default function GridSettings({ data, setData }) {
 
   const total = 100;
 
-  const [rows, setRows] = useState(7);
-  const [columns, setColumns] = useState(4);
+  const [rows, setRows] = useState(4);
+  const [columns, setColumns] = useState(7);
   const [resolution, setResolution] = useState(400);
 
   const incrementRows = () => {
@@ -34,7 +34,7 @@ export default function GridSettings({ data, setData }) {
 
   return (
     <div className="grid-settings-container">
-      <div>
+      <div className="rows-columns-">
         <div className="rows-and-columns">
           <div>
             rows:

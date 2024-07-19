@@ -7,7 +7,6 @@
   border: 0;
   box-sizing: border-box;
   font-family: 'Poppins', 'sans-serif';
-  border: 2px solid red;
 }
 
 .creator-container {
@@ -24,6 +23,7 @@
 }
 
 .banner {
+  background-color: black;
   display: grid;
   gap: 0px;
   line-height: 0;
@@ -33,6 +33,11 @@
 .banner-image-container {
   width: 100%;
   aspect-ratio: 1 / 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.banner-image-container:hover {
+  opacity: 0.3;
 }
 
 .image {
@@ -57,11 +62,12 @@ button:hover {
 /* Grid Settings */
 .grid-settings-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   padding: clamp(12px, 1.6vw, 24px);
   background-color: #f0f0f0;
   border-radius: 8px;
-  box-shadow: 0 0px 20px rgb(0, 0, 0);
+  box-shadow: 0 0px 24px rgb(0, 0, 0);
   width: 70%;
   margin: auto;
   gap: 20px;
@@ -78,9 +84,9 @@ button:hover {
 
 .rows-button, .columns-button {
   display: flex;
-  align-items: center;
   background-color: #007bff;
   padding: 0.4vw;
+  vertical-align: center;
   border-radius: 8px;
   color: white;
   gap: clamp(6px, 0.6vw, 12px);
@@ -89,20 +95,23 @@ button:hover {
 
 .rows, .columns {
   margin: 0 2%;
+  font-size: clamp(10px, 1.2vw, 24px);
 }
 
 .rows-minus, .rows-plus, .columns-minus, .columns-plus {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.6vw;
-  height: 1.6vw;
+  vertical-align: center;
+  width: clamp(12px, 2vw, 37px);
+  height: clamp(12px, 2vw, 36px);
   background-color: #0056b3;
+  box-shadow: 0 0 4px black;
   color: white;
   border-radius: 50%;
   cursor: pointer;
   user-select: none;
-  font-size: 18px;
+  font-size: clamp(12px, 1.6vw, 24px);
 }
 
 .rows-minus:hover, .rows-plus:hover, .columns-minus:hover, .columns-plus:hover {
@@ -114,7 +123,7 @@ button:hover {
 }
 
 .number-of-covers {
-  padding-top: 10px
+  padding-top: 1vw;
 }
 
 .slider {
@@ -146,8 +155,8 @@ button:hover {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 1.6vw;
-  height: 1.6vw;
+  width: clamp(12px, 2vw, 24px);
+  height: clamp(12px, 2vw, 24px);
   border-radius: 50%;
   background: #007bff;
   cursor: pointer;
@@ -159,8 +168,8 @@ button:hover {
 }
 
 .slider::-moz-range-thumb {
-  width: 1.6vw;
-  height: 1.6vw;
+  width: clamp(12px, 2vw, 24px);
+  height: clamp(12px, 2vw, 24px);
   border-radius: 50%;
   background: #007bff;
   cursor: pointer;
@@ -172,36 +181,22 @@ button:hover {
 }
 
 .generate-button, .shuffle-button {
-  padding: 8px 10px;
+  padding: clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px);
   color: white;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
+  font-size: clamp(12px, 1.2vw, 24px);
+  font-weight: 600;
 }
 
 .generate-button {
   background-color: #007bff;
 }
 
-.generate-button:hover {
-  background-color: #0056b3;
-}
-
-.generate-button:active {
-  background-color: #003f7f;
-}
-
 .shuffle-button {
   background-color: #063abd;
-}
-
-.shuffle-button:hover {
-  background-color: #042a87;
-}
-
-.shuffle-button:active {
-  background-color: #021752;
 }
 
 .buttons {
@@ -210,5 +205,4 @@ button:hover {
   gap: clamp(6px, 0.8vw, 10px);
   align-items: flex-end;
   width: auto;
-  margin: auto;
 }
