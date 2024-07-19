@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../utils/appContext";
 
-export default function GridSettings({ data, setData, covers, setCovers }) {
+export default function GridSettings() {
+
+  const { data, setData, covers, setCovers } = useContext(AppContext);
 
   const total = 100;
 
@@ -30,6 +33,10 @@ export default function GridSettings({ data, setData, covers, setCovers }) {
 
   const generateData = () => {
     setData(() => ({ rows, columns, resolution }));
+  }
+
+  const shuffleCovers = () => {
+
   }
 
   return (
@@ -72,7 +79,7 @@ export default function GridSettings({ data, setData, covers, setCovers }) {
         <button className="generate-button" onClick={generateData}>
           update!
         </button>
-        <button className="shuffle-button" onClick={generateData}>
+        <button className="shuffle-button" onClick={shuffleCovers}>
           shuffle!
         </button>
       </div>
