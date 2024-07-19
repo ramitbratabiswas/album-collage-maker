@@ -4,8 +4,6 @@ import { useFetchMyTopLong } from './fetchMyTopLong';
 import { useFetchMyTopMedium } from './fetchMyTopMedium';
 import { useFetchMyTopShort } from './fetchMyTopShort';
 
-import { shuffle } from './randomizeAlbums';
-
 export const useFetchUniqueImages = () => {
   const recents = useFetchMyRecents();
   const topLong = useFetchMyTopLong();
