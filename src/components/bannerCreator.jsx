@@ -6,7 +6,7 @@ import { AppContext } from '../utils/appContext.jsx';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages.js';
 
 export default function BannerCreator() {
-  const { data, setCovers, covers } = useContext(AppContext);
+  const { data, setCovers } = useContext(AppContext);
   const uniqueImages = useFetchUniqueImages();
 
   const { columns, resolution } = data;

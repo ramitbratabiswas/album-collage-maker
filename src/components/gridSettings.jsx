@@ -42,9 +42,9 @@ export default function GridSettings() {
 
   return (
     <div className="grid-settings-container">
-      <div className="rows-columns-">
+      <div className="rows-columns-container">
         <div className="rows-and-columns">
-          <div>
+          <div className="rows-columns-button-and-text">
             rows:
             <div className="rows-button">
               <span className="rows-minus" onClick={decrementRows}>-</span>
@@ -52,7 +52,7 @@ export default function GridSettings() {
               <span className="rows-plus" onClick={incrementRows}>+</span>
             </div>
           </div>
-          <div>
+          <div className="rows-columns-button-and-text">
             columns:
             <div className="columns-button">
               <span className="columns-minus" onClick={decrementColumns}>-</span>
@@ -62,6 +62,9 @@ export default function GridSettings() {
           </div>
         </div>
         <div className="number-of-covers">{`album covers to display: ${rows * columns}`}</div>
+        <button className="generate-button" onClick={generateData}>
+          update dimensions!
+        </button>
       </div>
       <div className="slider-and-resolution">
         {`side length of each image:`}
@@ -76,14 +79,9 @@ export default function GridSettings() {
         />
         {`${resolution} pixels`}
       </div>
-      <div className="buttons">
-        <button className="generate-button" onClick={generateData}>
-          update!
-        </button>
         <button className="shuffle-button" onClick={shuffleCovers}>
           shuffle!
         </button>
-      </div>
     </div>
   );
 }
