@@ -1,15 +1,14 @@
 // Banner.js
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, forwardRef } from 'react';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 
-export default function Banner({ data, setImagesLoaded }) {
+const Banner = forwardRef(({ data, setImagesLoaded }, ref) => {
   const { rows, columns } = data;
   const imagesToShow = rows * columns;
-  const bannerRef = useRef(null);
   const albums = useFetchUniqueImages();
 
   useEffect(() => {
-    const images = bannerRef.current.querySelectorAll('img');
+    const images = ref.current.querySelectorAll('img');
     const totalImages = images.length;
     let loadedImages = 0;
 
@@ -32,14 +31,14 @@ export default function Banner({ data, setImagesLoaded }) {
     if (totalImages === 0) {
       setImagesLoaded(true);
     }
-  }, [albums, setImagesLoaded]);
+  }, [albums, ref, setImagesLoaded]);
 
   useEffect(() => {
-    bannerRef.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    ref.current.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
   }, [columns]);
 
   return (
-    <div ref={bannerRef} className='banner'>
+    <div ref={ref} className='banner'>
       {albums.slice(0, imagesToShow).map((album, index) => (
         <div className='banner-image-container' key={index}>
           <img className='image' src={album.link} alt={`album-${index}`} />
@@ -47,4 +46,7 @@ export default function Banner({ data, setImagesLoaded }) {
       ))}
     </div>
   );
-}
+});
+
+Banner.displayName = 'Banner';
+export default Banner;

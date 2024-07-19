@@ -1,12 +1,12 @@
 // BannerCreator.js
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Banner from './banner.jsx';
 import { downloadBanner } from '../utils/downloadBanner';
 
 export default function BannerCreator({ data, setData, covers, setCovers }) {
   const { columns, resolution } = data;
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const bannerRef = React.useRef(null);
+  const bannerRef = useRef(null);
 
   const handleDownload = async () => {
     if (imagesLoaded && bannerRef.current) {
@@ -17,7 +17,7 @@ export default function BannerCreator({ data, setData, covers, setCovers }) {
   };
 
   return (
-    <div className='banner-creator-container'>
+    <div className='creator-container'>
       <div className='banner-container'>
         <Banner data={data} setImagesLoaded={setImagesLoaded} ref={bannerRef} />
       </div>

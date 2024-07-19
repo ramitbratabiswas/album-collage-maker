@@ -1,3 +1,4 @@
+// downloadBanner.js
 import html2canvas from 'html2canvas';
 
 export async function downloadBanner(bannerRef, columns, resolution) {
