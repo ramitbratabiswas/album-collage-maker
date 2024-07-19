@@ -1,15 +1,20 @@
-export const AlbumInfo = ({ cover, isOpen, onClose }) => {
+import { useContext } from "react";
+import { AppContext } from "../utils/appContext";
+
+export const AlbumInfo = () => {
+
+  const { covers, selectedIndex } = useContext(AppContext);
+  if (covers[selectedIndex]) console.log(covers[selectedIndex]);
 
   console.log("in AlbumInfo");
   
-  if (!cover) return null;
+  if (!covers[selectedIndex]) return null;
 
   return (
-    <div className={`album-info ${isOpen ? 'open' : ''}`}>
-      <button onClick={onClose}>Close</button>
-      <h2>{cover.album}</h2>
-      <p>{cover.artist}</p>
-      <img src={cover.link} alt={cover.album} />
+    <div className='album-info'>
+      <h2>{covers[selectedIndex].album}</h2>
+      <p>{covers[selectedIndex].artist}</p>
+      <img className="album-info-image" src={covers[selectedIndex].link} alt={covers[selectedIndex].album} />
     </div>
   );
 

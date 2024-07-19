@@ -1,13 +1,12 @@
-import { useState, useRef, useContext } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import Banner from './banner.jsx';
 import { downloadBanner } from '../utils/downloadBanner';
 import { AppContext } from '../utils/appContext';
 
 export default function BannerCreator() {
-  const { data } = useContext(AppContext);
+  const { data, selectedIndex, setSelectedIndex } = useContext(AppContext);
   const { columns, resolution } = data;
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [selectedAlbum, setSelectedAlbum] = useState(null);
   const ref = useRef(null);
 
   const handleDownload = async () => {
@@ -18,14 +17,11 @@ export default function BannerCreator() {
     }
   };
 
-  const handleAlbumClick = (album) => {
-    setSelectedAlbum(album);
-  };
 
   return (
     <div className='banner-creator-container'>
-      <div className={`banner-container ${selectedAlbum ? 'shift-left' : ''}`}>
-        <Banner setImagesLoaded={setImagesLoaded} ref={ref} onAlbumClick={handleAlbumClick} />
+      <div className={`banner-container`}>
+        <Banner setImagesLoaded={setImagesLoaded} ref={ref} />
       </div>
       <button onClick={handleDownload} disabled={!imagesLoaded}>Download as Image</button>
     </div>
