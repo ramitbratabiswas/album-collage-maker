@@ -4,7 +4,7 @@ import { downloadBanner } from '../utils/downloadBanner';
 import { AppContext } from '../utils/appContext';
 
 export default function BannerCreator() {
-  const { data, selectedIndex, setSelectedIndex } = useContext(AppContext);
+  const { data } = useContext(AppContext);
   const { columns, resolution } = data;
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const ref = useRef(null);

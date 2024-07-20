@@ -40,7 +40,9 @@ export default function GridSettings() {
     setCovers(shuffle(covers));
   }
   
-  const downloadCovers = () => {}
+  const downloadCovers = () => {
+    
+  }
 
   return (
     <div className="grid-settings-container">
