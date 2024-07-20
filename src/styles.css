@@ -1,17 +1,18 @@
 /* Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', 'sans-serif';
+  font-family: 'Jost', 'sans-serif';
+  font-weight: 400;
   /* border: 2px solid red; */
 }
 
 html {
-  background-color: rgb(60, 60, 60);
+  background-color: rgb(168, 193, 255);
   display: flex;
   flex-direction: column;
 }
@@ -21,10 +22,16 @@ html {
   flex-direction: column;
   width: 70%;
   height: 100%;
-  background-color: rgb(60, 60, 60);
   position: relative;
   padding: 2%;
   /* border: 2px solid blue; */
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+  color: #002850;
+  font-size: 80px;
 }
 
 .banner-creator-container {
@@ -73,10 +80,10 @@ button:hover {
 /* Grid Settings */
 .grid-settings-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: column;
   justify-content: space-between;
   padding: clamp(12px, 1.6vw, 24px);
-  background-color: #f0f0f0;
+  background-color: #6eaaff;
   box-shadow: 0 0px 24px rgb(0, 0, 0);
   width: 70%;
   margin: auto;
@@ -85,19 +92,33 @@ button:hover {
   font-weight: 600;
 }
 
+.grid-settings-header {
+  font-size: 40px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.grid-settings-content {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: auto;
+  gap: 8px;
+  font-size: clamp(12px, 1.2vw, 24px);
+  font-weight: 600;
+  width: 100%;
+}
+
 .rows-columns-container {
   display: flex;
   flex-direction: column;
   gap: clamp(6px, 1vw, 12px);
   /* border: 2px green solid; */
-  padding: 10px;
-  background-color: #6eaaff;
-  box-shadow: 0 0 8px black;
 }
 
 .rows-and-columns {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: flex-start;
   display: flex;
   gap: clamp(12px, 1.2vw, 24px);
@@ -121,6 +142,7 @@ button:hover {
 .rows, .columns {
   margin: 0 2%;
   font-size: clamp(10px, 1.2vw, 20px);
+  font-weight: 600;
   padding: 4px;
 }
 
@@ -159,7 +181,7 @@ button:hover {
   appearance: none;
   height: 8px;
   border-radius: 5px;
-  background: #ddd;
+  background: #002850;
   outline: none;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -167,16 +189,13 @@ button:hover {
   margin-left: 0;
 }
 
-.slider-and-resolution {
+.slider-resolution-and-button {
   padding: 10px;
-  width: 40%;
+  width: 50%;
   margin: 0px;
   display: flex;
   flex-direction: column;
-}
-
-.slider:hover {
-  opacity: 1;
+  gap: 5px;
 }
 
 .slider::-webkit-slider-thumb {
@@ -220,24 +239,42 @@ button:hover {
 }
 
 .shuffle-button {
-  background-color: #063abd;
   padding: clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px);
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
   font-size: clamp(12px, 1.2vw, 24px);
   font-weight: 600;
   box-shadow: 0px 0px 4px black;
-  background-color: #0056b3;
-  height: fit-content;
+  background-color: #007bff;
+  margin-top: 3px;
+}
+
+.download-button {
+  padding: clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px);
+  color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: clamp(12px, 1.2vw, 24px);
+  font-weight: 600;
+  box-shadow: 0px 0px 4px black;
+  background-color: white;
+  margin-top: 3px;
+}
+
+.download-button:hover {
+  background-color: #004080;
+  box-shadow: 0 0 8px rgba(0, 0, 0);
+  color: #fff;
 }
 
 .buttons {
   display: flex;
-  flex-direction: column;
   gap: clamp(6px, 0.8vw, 10px);
-  align-items: flex-end;
   width: auto;
+  justify-content: space-evenly;
 }
 
 /* album info */
@@ -258,39 +295,73 @@ button:hover {
   box-shadow: 0px -2px 20px black;
 }
 
+.album-info-header {
+  color: white;
+  margin-bottom: 2vw;
+  font-size: clamp(36px, 4.8vw, 80px);
+}
+
 .album-info-sidebar.open {
   transform: translateX(0);
 }
 
-.album-info-card {
+.album-info-card.big {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  background-color: #fff;
+  background-color: rgb(201, 219, 255);
   width: 100%;
   padding: 20px;
   box-shadow: 0px 0 8px rgba(0, 0, 0);
 }
 
-.album-info-image {
+.album-info-card.small {
+  display: flex;
+  background-color: rgb(201, 219, 255);
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0px 0 8px rgba(0, 0, 0);
+  height: min-content;
+}
+
+.big .album-info-image {
   width: 100%;
   aspect-ratio: 1 / 1;
   margin-bottom: clamp(10px, 0.5vw, 20px);
   box-shadow: 0 0 4px rgba(0, 0, 0);
 }
 
+.small .album-info-image {
+  aspect-ratio: 1 / 1;
+  width: 7.5vw;
+  height: 7.5vw;
+  object-fit: contain;
+  box-shadow: 0 0 4px rgba(0, 0, 0);
+}
+
+.album-info-card.small .album-info-text {
+  margin-left: clamp(10px, 0.8vw, 32px);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
 .album-info-name {
   font-size: clamp(16px, 2vw, 32px);
-  font-weight: 800;
+  font-weight: 600;
+  text-overflow: clip;
+  overflow: hidden;
 }
 
 .album-info-artist-name {
   font-size: clamp(10px, 1.2vw, 20px);
-  font-weight: 600;
+  overflow: hidden;
 }
 
 .album-info-replace-with {
   margin-top: 2vw;
-  font-size: clamp(12px, 1.6vw, 24px);
-  font-weight: 600;
+  font-size: clamp(12px, 2.4vw, 36px);
   color: white;
 }
 
@@ -342,7 +413,7 @@ button:hover {
 }
 
 .album-info-search-submit:hover {
-  background-color: #49b3ff;
+  background-color: #004080;
   box-shadow: 0 0 8px rgba(0, 0, 0);
   color: #fff;
 }
@@ -354,9 +425,8 @@ button:hover {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
-  max-height: 400px;
   overflow-y: auto;
-  background-color: #063abd;
+  background-color: #6eaaff;
   box-shadow: inset 0 0 8px black;
 }
 
@@ -364,7 +434,7 @@ button:hover {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #6eaaff;
+  background-color: rgb(201, 219, 255);
   transition: background-color 0.3s, transform 0.3s;
   cursor: pointer;
   box-shadow: 0 0 4px black;

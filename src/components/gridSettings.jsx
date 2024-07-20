@@ -39,49 +39,59 @@ export default function GridSettings() {
   const shuffleCovers = () => {
     setCovers(shuffle(covers));
   }
+  
+  const downloadCovers = () => {}
 
   return (
     <div className="grid-settings-container">
-      <div className="rows-columns-container">
-        <div className="rows-and-columns">
-          <div className="rows-columns-button-and-text">
-            rows:
-            <div className="rows-button">
-              <span className="rows-minus" onClick={decrementRows}>-</span>
-              <span className="rows">{`${rows}`}</span>
-              <span className="rows-plus" onClick={incrementRows}>+</span>
+      <h1 className="grid-settings-header">banner settings</h1>
+      <div className="grid-settings-content">
+        <div className="rows-columns-container">
+          <div className="rows-and-columns">
+            <div className="rows-columns-button-and-text">
+              rows:
+              <div className="rows-button">
+                <span className="rows-minus" onClick={decrementRows}>-</span>
+                <span className="rows">{`${rows}`}</span>
+                <span className="rows-plus" onClick={incrementRows}>+</span>
+              </div>
+            </div>
+            <div className="rows-columns-button-and-text">
+              columns:
+              <div className="columns-button">
+                <span className="columns-minus" onClick={decrementColumns}>-</span>
+                <span className="columns">{`${columns}`}</span>
+                <span className="columns-plus" onClick={incrementColumns}>+</span>
+              </div>
             </div>
           </div>
-          <div className="rows-columns-button-and-text">
-            columns:
-            <div className="columns-button">
-              <span className="columns-minus" onClick={decrementColumns}>-</span>
-              <span className="columns">{`${columns}`}</span>
-              <span className="columns-plus" onClick={incrementColumns}>+</span>
-            </div>
+          <div className="number-of-covers">{`album covers to display: ${rows * columns}`}</div>
+          <button className="generate-button" onClick={generateData}>
+            update dimensions!
+          </button>
+        </div>
+        <div className="slider-resolution-and-button">
+          {`side length of each image:`}
+          <input
+            onChange={handleResolutionChange}
+            type="range"
+            min="100"
+            max="640"
+            value={resolution}
+            className="slider"
+            id="myRange"
+          />
+          {`${resolution} pixels`}
+          <div className="buttons">
+          <button className="shuffle-button" onClick={shuffleCovers}>
+            shuffle!
+          </button>
+          <button className="download-button" onClick={downloadCovers}>
+            download!
+          </button>
           </div>
         </div>
-        <div className="number-of-covers">{`album covers to display: ${rows * columns}`}</div>
-        <button className="generate-button" onClick={generateData}>
-          update dimensions!
-        </button>
       </div>
-      <div className="slider-and-resolution">
-        {`side length of each image:`}
-        <input
-          onChange={handleResolutionChange}
-          type="range"
-          min="100"
-          max="640"
-          value={resolution}
-          className="slider"
-          id="myRange"
-        />
-        {`${resolution} pixels`}
-      </div>
-        <button className="shuffle-button" onClick={shuffleCovers}>
-          shuffle!
-        </button>
     </div>
   );
 }

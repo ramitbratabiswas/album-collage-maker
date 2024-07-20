@@ -8,10 +8,11 @@ export default function Creator() {
   return (
     <AppProvider>
       <div className='creator-container'>
+        <h1 className="header">my album collage!</h1>
         <GridSettings />
         <BannerCreator />
-        <AlbumInfo />
       </div>
+      <AlbumInfo />
     </AppProvider>
   );
 }
