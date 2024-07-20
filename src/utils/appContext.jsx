@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useRef } from 'react';
 
 export const AppContext = createContext();
 
@@ -7,6 +7,8 @@ export const AppProvider = ({ children }) => {
   const [covers, setCovers] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [sidebarOpen, setSidebarOpen] = useState(selectedIndex >= 0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
     setSidebarOpen(selectedIndex >= 0);
@@ -22,7 +24,11 @@ export const AppProvider = ({ children }) => {
         selectedIndex, 
         setSelectedIndex,
         sidebarOpen,
-        setSidebarOpen}
+        setSidebarOpen,
+        imagesLoaded,
+        setImagesLoaded,
+        ref
+      }
       }>
       {children}
     </AppContext.Provider>

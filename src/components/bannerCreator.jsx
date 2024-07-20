@@ -4,10 +4,8 @@ import { downloadBanner } from '../utils/downloadBanner';
 import { AppContext } from '../utils/appContext';
 
 export default function BannerCreator() {
-  const { data } = useContext(AppContext);
+  const { data, imagesLoaded, setImagesLoaded, ref } = useContext(AppContext);
   const { columns, resolution } = data;
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const ref = useRef(null);
 
   const handleDownload = async () => {
     if (imagesLoaded && ref.current) {
@@ -21,9 +19,9 @@ export default function BannerCreator() {
   return (
     <div className={`banner-creator-container`}>
       <div className={`banner-container`}>
-        <Banner setImagesLoaded={setImagesLoaded} ref={ref} />
+        <Banner />
       </div>
-      <button onClick={handleDownload} disabled={!imagesLoaded}>Download as Image</button>
+      <button onClick={() => handleDownload()} disabled={!imagesLoaded}>Download as Image</button>
     </div>
   );
 }

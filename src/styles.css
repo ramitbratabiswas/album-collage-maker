@@ -13,14 +13,15 @@
 html {
   display: flex;
   flex-direction: column;
-  background-color: #007bff;
   overscroll-behavior: none;
+  background-color: #007bff;
 }
 
 .creator-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 100vh;
   height: 100%;
   position: relative;
   transition: all 0.3s ease;
@@ -42,6 +43,7 @@ html {
 }
 
 .header {
+  margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
   color: #002850;

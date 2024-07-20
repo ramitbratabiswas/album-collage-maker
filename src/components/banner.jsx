@@ -1,9 +1,9 @@
-import { useEffect, forwardRef, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 import { AppContext } from '../utils/appContext';
 
-const Banner = forwardRef(({ setImagesLoaded }, ref) => {
-  const { data, covers, setCovers, selectedIndex, setSelectedIndex } = useContext(AppContext);
+const Banner = () => {
+  const { data, covers, setCovers, selectedIndex, setSelectedIndex, setImagesLoaded, ref } = useContext(AppContext);
   const { rows, columns } = data;
   const numImagesToShow = rows * columns;
   const albums = useFetchUniqueImages();
@@ -62,7 +62,7 @@ const Banner = forwardRef(({ setImagesLoaded }, ref) => {
       ))}
     </div>
   );
-});
+};
 
 Banner.displayName = 'Banner';
 export default Banner;
