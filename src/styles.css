@@ -19,7 +19,7 @@ html {
 .creator-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
   height: 100%;
   background-color: rgb(60, 60, 60);
   position: relative;
@@ -76,7 +76,6 @@ button:hover {
   justify-content: space-between;
   padding: clamp(12px, 1.6vw, 24px);
   background-color: #f0f0f0;
-  border-radius: 8px;
   box-shadow: 0 0px 24px rgb(0, 0, 0);
   width: 70%;
   margin: auto;
@@ -91,7 +90,6 @@ button:hover {
   gap: clamp(6px, 1vw, 12px);
   /* border: 2px green solid; */
   padding: 10px;
-  border-radius: 8px;
   background-color: #49b3ff;
   box-shadow: 0 0 8px black;
 }
@@ -113,7 +111,6 @@ button:hover {
   background-color: #007bff;
   padding: 0.4vw;
   vertical-align: center;
-  border-radius: 8px;
   color: white;
   gap: clamp(6px, 0.6vw, 12px);
   box-shadow: 0px 0px 4px black;
@@ -209,24 +206,29 @@ button:hover {
   background: #0056b3;
 }
 
-.generate-button, .shuffle-button {
+.generate-button {
   padding: clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px);
   color: white;
-  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
   font-size: clamp(12px, 1.2vw, 24px);
   font-weight: 600;
   box-shadow: 0px 0px 4px black;
-}
-
-.generate-button {
-  background-color: #007bff;
+  background-color: #0056b3;
 }
 
 .shuffle-button {
   background-color: #063abd;
+  padding: clamp(6px, 1vw, 16px) clamp(6px, 1vw, 16px);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: clamp(12px, 1.2vw, 24px);
+  font-weight: 600;
+  box-shadow: 0px 0px 4px black;
+  background-color: #0056b3;
+  height: fit-content;
 }
 
 .buttons {
@@ -238,17 +240,108 @@ button:hover {
 }
 
 /* album info */
-.album-info {
-  background-color: #fff;
-  width: min-content;
-  padding: 50px;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+
+.album-info-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  max-width: 400px;
+  height: 100%;
+  background-color: #007bff;
+  display: flex;
+  flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
+  padding: 20px;
+  box-shadow: 0px -2px 20px black;
+}
+
+.album-info-sidebar.open {
+  transform: translateX(0);
+}
+
+.album-info-card {
+  align-items: flex-start;
+  background-color: #fff;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0px 0 8px rgba(0, 0, 0);
 }
 
 .album-info-image {
-  width: 300px;
+  width: 100%;
   aspect-ratio: 1 / 1;
-  margin-top: 20px;
+  margin-bottom: clamp(10px, 0.5vw, 20px);
+  box-shadow: 0 0 4px rgba(0, 0, 0);
+}
+
+.album-info-name {
+  font-size: clamp(16px, 2vw, 32px);
+  font-weight: 800;
+}
+
+.album-info-artist-name {
+  font-size: clamp(10px, 1.2vw, 20px);
+  font-weight: 600;
+}
+
+.album-info-replace-with {
+  margin-top: 2vw;
+  font-size: clamp(12px, 1.6vw, 24px);
+  font-weight: 600;
+  color: white;
+}
+
+
+.album-info-search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.album-info-search {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s, background 0.3s;
+  width: 70%;
+}
+
+.album-info-search::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.album-info-search:focus {
+  outline: none;
+  border-bottom-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.album-info-search:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
+.album-info-search-submit {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #fff;
+  border: none;
+  color: #007bff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.album-info-search-submit:hover {
+  background-color: #49b3ff;
+  box-shadow: 0 0 8px rgba(0, 0, 0);
+  color: #fff;
 }
