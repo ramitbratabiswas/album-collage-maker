@@ -1,18 +1,21 @@
+import { useContext } from "react";
 import { AlbumInfo } from "../components/albumInfo";
 import GridSettings from "../components/gridSettings";
 import BannerCreator from "../components/bannerCreator";
-import { AppProvider } from "../utils/appContext";
+import { AppContext } from "../utils/appContext";
 
 export default function Creator() {
 
+  const { sidebarOpen } = useContext(AppContext);
+
   return (
-    <AppProvider>
-      <div className='creator-container'>
+    <>
+      <div className={`creator-container ${sidebarOpen ? 'narrow' : 'wide'}`}>
         <h1 className="header">my album collage!</h1>
         <GridSettings />
         <BannerCreator />
       </div>
       <AlbumInfo />
-    </AppProvider>
+    </>
   );
 }

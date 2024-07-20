@@ -6,7 +6,7 @@ export const AlbumInfo = () => {
   const { covers, selectedIndex } = useContext(AppContext);
   const [query, setQuery] = useState("");
   const [isResized, setIsResized] = useState(false);
-
+   
   if (!covers[selectedIndex]) return null;
 
   const handleAlbumSubmit = (event) => {

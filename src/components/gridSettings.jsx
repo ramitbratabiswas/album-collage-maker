@@ -4,7 +4,7 @@ import { shuffle } from "../utils/randomizeAlbums";
 
 export default function GridSettings() {
 
-  const { setData, covers, setCovers } = useContext(AppContext);
+  const { setData, covers, setCovers, setSelectedIndex } = useContext(AppContext);
 
   const total = covers.length;
 
@@ -34,14 +34,17 @@ export default function GridSettings() {
 
   const generateData = () => {
     setData(() => ({ rows, columns, resolution }));
+    document.getElementById('banner').scrollIntoView({ behavior: 'smooth' });
   }
 
   const shuffleCovers = () => {
     setCovers(shuffle(covers));
+    setSelectedIndex(() => -1);
+    document.getElementById('banner').scrollIntoView({ behavior: 'smooth' });
   }
   
   const downloadCovers = () => {
-    
+
   }
 
   return (

@@ -8,30 +8,44 @@
   box-sizing: border-box;
   font-family: 'Jost', 'sans-serif';
   font-weight: 400;
-  /* border: 2px solid red; */
 }
 
 html {
-  background-color: rgb(168, 193, 255);
   display: flex;
   flex-direction: column;
+  background-color: #007bff;
+  overscroll-behavior: none;
 }
 
 .creator-container {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   height: 100%;
   position: relative;
-  padding: 2%;
+  transition: all 0.3s ease;
   /* border: 2px solid blue; */
+}
+
+.narrow {
+  width: 75%;
+  background-color: #002850;
+}
+
+.narrow .header {
+  color: white;
+}
+
+.wide {
+  width: 100%;
+  background-color: #a6cbff;
 }
 
 .header {
   margin-bottom: 40px;
   text-align: center;
   color: #002850;
-  font-size: 80px;
+  font-size: clamp(60px, 8vw, 80px);
 }
 
 .banner-creator-container {
@@ -57,14 +71,39 @@ html {
 }
 
 .banner-image-container {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   transition: all 0.3s ease-in-out;
+  overflow: hidden;
 }
 
-.banner-image-container:hover {
-  opacity: 0.4;
-  cursor: pointer;
+.banner-image-container:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.banner-image-container:hover .banner-edit {
+  opacity: 1;
+}
+
+.banner-edit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-size: 1.2em;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .image {
@@ -72,6 +111,7 @@ html {
   height: 100%;
   object-fit: cover;
 }
+
 
 button:hover {
   box-shadow: 0px 0px 8px black;
@@ -81,11 +121,12 @@ button:hover {
 .grid-settings-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: clamp(12px, 1.6vw, 24px);
   background-color: #6eaaff;
   box-shadow: 0 0px 24px rgb(0, 0, 0);
   width: 70%;
+  max-width: 800px;
   margin: auto;
   gap: 8px;
   font-size: clamp(12px, 1.2vw, 24px);
@@ -278,31 +319,30 @@ button:hover {
 }
 
 /* album info */
-
 .album-info-sidebar {
   position: fixed;
   top: 0;
   right: 0;
-  width: 30%;
-  max-width: 400px;
+  width: 25%;
   height: 100%;
+  display: none;
   background-color: #007bff;
-  display: flex;
   flex-direction: column;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   padding: 20px;
   box-shadow: 0px -2px 20px black;
+  z-index: 3;
+}
+
+.album-info-sidebar.open {
+  display: flex;
+  transition: all 0.3s ease;
 }
 
 .album-info-header {
   color: white;
   margin-bottom: 2vw;
   font-size: clamp(36px, 4.8vw, 80px);
-}
-
-.album-info-sidebar.open {
-  transform: translateX(0);
 }
 
 .album-info-card.big {
@@ -313,6 +353,7 @@ button:hover {
   width: 100%;
   padding: 20px;
   box-shadow: 0px 0 8px rgba(0, 0, 0);
+  transition: all 0.3s ease-in-out;
 }
 
 .album-info-card.small {
@@ -322,6 +363,7 @@ button:hover {
   padding: 15px;
   box-shadow: 0px 0 8px rgba(0, 0, 0);
   height: min-content;
+  transition: all 0.3s ease-in-out;
 }
 
 .big .album-info-image {
@@ -329,6 +371,7 @@ button:hover {
   aspect-ratio: 1 / 1;
   margin-bottom: clamp(10px, 0.5vw, 20px);
   box-shadow: 0 0 4px rgba(0, 0, 0);
+  transition: all 0.3s ease-in-out;
 }
 
 .small .album-info-image {
@@ -337,6 +380,7 @@ button:hover {
   height: 7.5vw;
   object-fit: contain;
   box-shadow: 0 0 4px rgba(0, 0, 0);
+  transition: all 0.3s ease-in-out;
 }
 
 .album-info-card.small .album-info-text {
@@ -345,6 +389,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   max-width: 200px;
+  overflow: hidden;
 }
 
 .album-info-name {
@@ -364,7 +409,6 @@ button:hover {
   font-size: clamp(12px, 2.4vw, 36px);
   color: white;
 }
-
 
 .album-info-search-form {
   display: flex;
@@ -419,7 +463,6 @@ button:hover {
 }
 
 /* Search Results */
-
 .search-result-list {
   display: none;
   flex-direction: column;

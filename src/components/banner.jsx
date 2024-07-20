@@ -1,4 +1,3 @@
-// Banner.js
 import { useEffect, forwardRef, useContext } from 'react';
 import { useFetchUniqueImages } from '../utils/fetchUniqueImages';
 import { AppContext } from '../utils/appContext';
@@ -42,7 +41,11 @@ const Banner = forwardRef(({ setImagesLoaded }, ref) => {
   }, [covers, ref, setImagesLoaded]);
 
   const handleAlbumClick = (index) => {
-    setSelectedIndex(index);
+    if (index === selectedIndex) {
+      setSelectedIndex(-1);
+    } else {
+      setSelectedIndex(index);
+    }
   }
 
   useEffect(() => {
@@ -50,10 +53,11 @@ const Banner = forwardRef(({ setImagesLoaded }, ref) => {
   }, [columns, ref]);
 
   return (
-    <div ref={ref} className='banner'>
+    <div ref={ref} className='banner' id='banner'>
       {covers.slice(0, numImagesToShow).map((album, index) => (
         <div className='banner-image-container' key={index} onClick={() => handleAlbumClick(index)}>
           <img className='image' src={album.link} alt={`album-${index}`} />
+          <p className='banner-edit'>{selectedIndex === index ? `done` :`replace`}</p>
         </div>
       ))}
     </div>
