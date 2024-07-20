@@ -41,7 +41,6 @@ export default function GridSettings() {
   const shuffleCovers = () => {
     setCovers(shuffle(covers));
     setSelectedIndex(() => -1);
-    document.getElementById('banner').scrollIntoView({ behavior: 'smooth' });
   }
   
   const handleDownload = async () => {
