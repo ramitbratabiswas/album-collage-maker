@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/appContext";
 import { shuffle } from "../utils/randomizeAlbums";
+import { downloadBanner } from "../utils/downloadBanner";
 
 export default function GridSettings() {
 
-  const { setData, covers, setCovers, setSelectedIndex } = useContext(AppContext);
+  const { data, setData, covers, setCovers, setSelectedIndex, imagesLoaded, ref  } = useContext(AppContext);
 
   const total = covers.length;
 
@@ -43,9 +44,13 @@ export default function GridSettings() {
     document.getElementById('banner').scrollIntoView({ behavior: 'smooth' });
   }
   
-  const downloadCovers = () => {
-
-  }
+  const handleDownload = async () => {
+    if (imagesLoaded && ref.current) {
+      await downloadBanner(ref, data.columns, resolution);
+    } else {
+      alert('Images are still loading, please try again in a moment.');
+    }
+  };
 
   return (
     <div className="grid-settings-container">
@@ -91,7 +96,7 @@ export default function GridSettings() {
           <button className="shuffle-button" onClick={shuffleCovers}>
             shuffle!
           </button>
-          <button className="download-button" onClick={downloadCovers}>
+          <button className="download-button" onClick={handleDownload}>
             download!
           </button>
           </div>
