@@ -57,6 +57,7 @@ html {
 
 .banner-image-container:hover {
   opacity: 0.4;
+  cursor: pointer;
 }
 
 .image {
