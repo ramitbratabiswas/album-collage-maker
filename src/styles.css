@@ -17,6 +17,60 @@ html {
   background-color: #007bff;
 }
 
+/* Frontpage Styles */
+/* Frontpage Styles */
+.frontpage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(45deg, #4a86ff, #d7e3ff);
+  background-size: 200% 200%;
+  animation: gradientAnimation 8s ease infinite;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.frontpage-header {
+  font-size: clamp(60px, 10vw, 120px); /* Massive header size with responsiveness */
+  color: #002850; /* Text color */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.subtagline-text {
+  font-size: clamp(24px, 4vw, 36px); /* Responsive font size for the subtagline */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-link {
+  text-decoration: none;
+  color: #2f59ff;
+  transition: all 0.3s ease;
+}
+
+.home-link:hover {
+  color: #0f32df;
+}
+
+/* Creator */
+
 .creator-container {
   display: flex;
   flex-direction: column;
@@ -48,6 +102,11 @@ html {
   text-align: center;
   color: #002850;
   font-size: clamp(60px, 8vw, 80px);
+}
+
+.header-link {
+  text-decoration: none;
+  
 }
 
 .banner-creator-container {

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AlbumInfo } from "../components/albumInfo";
 import GridSettings from "../components/gridSettings";
 import BannerCreator from "../components/bannerCreator";
@@ -11,7 +12,7 @@ export default function Creator() {
   return (
     <>
       <div className={`creator-container ${sidebarOpen ? 'narrow' : 'wide'}`}>
-        <h1 className="header">my album collage!</h1>
+        <Link className="header-link" to="/"><h1 className="header">my album collage!</h1></Link>
         <GridSettings />
         <BannerCreator />
       </div>

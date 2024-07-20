@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { createAuthLink } from "../utils/createAuthLink";
 
 export default function Frontpage() {
@@ -7,7 +6,12 @@ export default function Frontpage() {
 
   return (
     <div className="frontpage-container">
-      <div className="subtagline"><h1 className="subtagline-text"><a href={authLink}><span className="home-link link-1">log in to use your own music</span></a></h1></div>
+      <h1 className="frontpage-header">my album collage!</h1>
+        <h1 className="subtagline-text">
+          <a className="home-link" href={authLink}>
+            <span className="log-in">log in</span> to get your own personalized banner
+          </a>
+        </h1>
     </div>
   );
 }
