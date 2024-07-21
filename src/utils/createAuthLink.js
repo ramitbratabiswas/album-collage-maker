@@ -3,7 +3,7 @@ import crypto from 'crypto-browserify';
 export const createAuthLink = () => {
 
   const client_id = import.meta.env.VITE_CLIENT_ID;
-  const redirect_uri = import.meta.env.VITE_REDIRECT_URI;
+  const redirect_uri = 'https://myalbumcollage.netlify.app/callback';
 
   const state = generateRandomString(16);
   const scope = `

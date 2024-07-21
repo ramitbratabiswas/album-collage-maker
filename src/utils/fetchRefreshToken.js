@@ -17,7 +17,7 @@ export const useFetchRefreshToken = (code, state) => {
     body: new URLSearchParams({
       grant_type: "authorization_code",
       code: code,
-      redirect_uri: import.meta.env.VITE_REDIRECT_URI,
+      redirect_uri: 'https://myalbumcollage.netlify.app/callback',
     }),
   };
 
